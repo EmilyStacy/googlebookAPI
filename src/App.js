@@ -70,7 +70,7 @@ class App extends Component {
       <h1>Google Book Search</h1>
       </header>
       {/* { this.state.hasFetched ? <img src=""/> : null }} */}
-      <Form className="Form" onHandleSearch={query=>this.handleSearch(query,currentPrintFilter,currentTypeFilter)} />
+      <Form className="Form" onHandleSearch={this.handleSearch} />
       <BookList booklist={this.state.booklist} />
       
     </main>

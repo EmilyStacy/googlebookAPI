@@ -14,7 +14,6 @@ class Form extends Component {
     onPrintChangeHandler(e){
         this.setState({
             currentPrintFilter: e.target.value
-           
         })
     }
 
@@ -22,11 +21,13 @@ class Form extends Component {
         this.setState({
             currentTypeFilter: e.target.value
         })
+        console.log(e.target.value)
     }
 
     render() {
+       
         return (
-            <form onSubmit={e=>this.props.onHandleSearch(e.target.value)}>
+            <form onSubmit={this.props.onHandleSearch}>
                 <div className ="search">
                 <label htmlFor="Search">Search:</label>
                 <input type="text" placeholder="type a word.." name="search" /> 
@@ -35,12 +36,12 @@ class Form extends Component {
            
                 <div className="filter" >
                     <label htmlFor="type">Print Type:</label>
-                    <select className="printType" onChange={e=>this.props.onPrintChangeHandler(e.target.value)}>
+                    <select className="printType" onChange={this.props.onPrintChangeHandler}>
                         <option value="Book">Book </option>
                         <option value="Megazine">Megazine </option>
                     </select>
                     <label htmlFor="bookType">Book Type:</label>
-                    <select className="bookType" onChange={e=>this.props.onTypeChangeHandler(e.target.value)}>
+                    <select className="bookType" onChange={this.props.onTypeChangeHandler}>
                     <option value="">No filter </option>
                     <option value="free-ebooks">free-ebooks </option>
                     <option value="paid-ebooks">paid-ebooks </option>
