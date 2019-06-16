@@ -4,26 +4,32 @@ class Form extends Component {
     constructor(props){
         super(props);
         this.state={
+            q: " ",
             currentPrintFilter:null,
-            currentTypeFilter:null
+            currentTypeFilter:null,
+            
         }
-        this.onPrintChangeHandler=this.onPrintChangeHandler.bind(this);
-        this.onTypeChangeHandler=this.onTypeChangeHandler.bind(this);
+        // this.onPrintChangeHandler=this.onPrintChangeHandler.bind(this);
+        // this.onTypeChangeHandler=this.onTypeChangeHandler.bind(this);
+        this.selectFilter=this.selectFilter(this);
     }
 
-    onPrintChangeHandler(e){
-        this.setState({
-            currentPrintFilter: e.target.value
-        })
-    }
+    // onPrintChangeHandler(e){
+    //     this.setState({
+    //         currentPrintFilter: e.target.value
+    //     })
+    // }
 
-    onTypeChangeHandler(e){
-        this.setState({
-            currentTypeFilter: e.target.value
-        })
-        console.log(e.target.value)
-    }
+    // onTypeChangeHandler(e){
+    //     this.setState({
+    //         currentTypeFilter: e.target.value
+    //     })
+        
+    // }
 
+    selectFilter(){
+        this.props.onHandleSearch(this.state.targetvalue)
+    }
     render() {
        
         return (
@@ -36,12 +42,12 @@ class Form extends Component {
            
                 <div className="filter" >
                     <label htmlFor="type">Print Type:</label>
-                    <select className="printType" onChange={this.props.onPrintChangeHandler}>
+                    <select className="printType" onChange={this.props.onHandleSearch}>
                         <option value="Book">Book </option>
                         <option value="Megazine">Megazine </option>
                     </select>
                     <label htmlFor="bookType">Book Type:</label>
-                    <select className="bookType" onChange={this.props.onTypeChangeHandler}>
+                    <select className="bookType" onChange={this.props.onHandleSearch}>
                     <option value="">No filter </option>
                     <option value="free-ebooks">free-ebooks </option>
                     <option value="paid-ebooks">paid-ebooks </option>
