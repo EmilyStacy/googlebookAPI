@@ -1,0 +1,43 @@
+
+.item{
+    padding:10px;
+    margin:10px;
+}
+.header2{
+    text-align:center;
+    width:100%;
+}
+
+.general{
+    width:100%;
+    height:auto;
+    display:flex;
+    
+}
+
+img{
+    width:45%;
+    text-align:center;
+}
+.info{
+    width:45%;
+    text-align:center;
+}
+
+/* @media screen and(min-width:767px) {
+    .general{
+        width:100%;
+        height:auto;
+        display:flex;
+    }
+
+    img{
+        width:45%;
+        text-align:center;
+    }
+
+    .info{
+        width:45%;
+        text-align:center;
+    }
+} */

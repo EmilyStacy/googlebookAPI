@@ -1,26 +1,81 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import BookList from './BookApp/BookList';
+import Form from './Form/form';
+import Config from './config';
+//callback API
+//pass value of booklist
+//search filter function
+//printtype filter function
+//booktype filter function
+//curriculum:state
+//this.state = 
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state= 
+    { q:'Henry',
+      error:null,
+      booklist:[],
 
-function App() {
+    }
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+    componentDidMount(){
+    fetch(`${Config.API_ENDPOINT}q=${this.state.q}`)
+    
+    .then(res=> {
+      if(!res.ok){
+        throw new Error(res.status)
+      }
+      return res.json()
+    } )
+      // .then(console.log(res.json)).=> don't do it
+    .then(data => {
+      this.setState (
+        {booklist:data.items,
+         })
+        console.log(data);
+    }
+    )
+      .catch(error => this.setState({error}));
+      
+  }
+//how to define current PrintFilter and currentTypeFilter (set state in form.js)
+
+ handleSearch(query,currentPrintFilter,currentTypeFilter) {
+   let url = `${Config.API_ENDPOINT}q=${query}`
+     if (currentPrintFilter){
+      url+=`&printType=${currentPrintFilter}`
+      } 
+      if(currentTypeFilter){
+        url+=`&filter=${currentTypeFilter}`
+      }
+   fetch(url)
+  //  fetch(`${Config.API_ENDPOINT}q=${query}`)
+   .then(res => res.json())
+   .then(data => this.setState({
+     booklist:data,
+     error:null
+    }
+     ))
+    }
+    
+      
+  render(){
+    // const booklist = 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className="App">
+      <header className="header">
+      <h1>Google Book Search</h1>
       </header>
-    </div>
+      {/* { this.state.hasFetched ? <img src=""/> : null }} */}
+      <Form className="Form" onHandleSearch={query=>this.handleSearch(query,currentPrintFilter,currentTypeFilter)} />
+      <BookList booklist={this.state.booklist} />
+      
+    </main>
   );
+}
 }
 
 export default App;
