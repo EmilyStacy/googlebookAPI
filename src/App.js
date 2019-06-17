@@ -22,7 +22,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
     componentDidMount(){
-    this.setState({hasfetched:false});
+    this.setState({loading:true});
     fetch(`${Config.API_ENDPOINT}q=${this.state.q}`
      )
     
@@ -36,7 +36,7 @@ class App extends Component {
     .then(data => {
       this.setState (
         {booklist:data.items,
-         hasfetched:true
+         loading:false
          })
         console.log(this.state.booklist);
     }
@@ -66,19 +66,18 @@ class App extends Component {
     
       
   render(){
-    let fetchStatus=this.state.hasfetched;
+    let loading=this.state.loading;
 
   return (
     <main className="App">
       <header className="header">
       <h1>Google Book Search</h1>
-      {fetchStatus!==false?<div class="load-bar">
+      </header>
+      {loading!==false?<div class="load-bar">
               <div class="bar"></div>
               <div class="bar"></div>
               <div class="bar"></div>
               </div>: ''}
-      </header>
-      {/* { this.state.hasFetched ? <img src=""/> : null }} */}
       <Form className="Form" onHandleSearch={this.handleSearch} />
       <BookList booklist={this.state.booklist} />
       

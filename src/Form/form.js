@@ -5,7 +5,7 @@ class Form extends Component {
         super(props);
         this.state={
             q: "",
-            currentPrintFilter:"Book",
+            currentPrintFilter:null,
             currentTypeFilter:null
             
         }
@@ -18,9 +18,7 @@ class Form extends Component {
     handleSubmit(event){
         event.preventDefault();
         console.log('query is', this.state.q)
-        this.props.onHandleSearch(this.state.q);
-        this.props.onHandleSearch(this.state.currentPrintFilter);
-        this.props.onHandleSearch(this.state.currentTypeFilter);
+        this.props.onHandleSearch(this.state.q,this.state.currentPrintFilter,this.state.currentTypeFilter);
     }
 
     setCurrentPrintFilter(event){

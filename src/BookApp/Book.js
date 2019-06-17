@@ -17,6 +17,8 @@ class Book extends Component {
             thumbnail=this.props.data.volumeInfo.imageLinks.thumbnail;
         }
 
+        console.log("this is",this.props.data.categories)
+
         return (<div className="item">
                     <h2 class="header2"> {this.props.data.volumeInfo.title} </h2>
                     <div className="general">
