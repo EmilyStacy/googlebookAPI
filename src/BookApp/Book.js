@@ -9,13 +9,18 @@ class Book extends Component {
         //return sales;
         //how to show the price with the $ sign? how to deal with the conditional situation when the books is not for sale?
         //cannot call back the description from the API
-        console.log(this.props.data);
-        console.log(this.props.data.saleInfo.saleability);
-        console.log(this.props.data.volumeInfo.imageLinks.thumbnail);
+        // console.info(this.props.data.volumeInfo.imageLinks);
+        let thumbnail; 
+        if (this.props.data.volumeInfo.imageLinks ===undefined) {
+            thumbnail=null; 
+        }else {
+            thumbnail=this.props.data.volumeInfo.imageLinks.thumbnail;
+        }
+
         return (<div className="item">
                     <h2 class="header2"> {this.props.data.volumeInfo.title} </h2>
                     <div className="general">
-                        <img src={this.props.data.volumeInfo.imageLinks.thumbnail} alt="book image"/>
+                        {thumbnail !==null ?<img src={thumbnail}/>:<div className="placeholder">No image</div>}
                         <div className="info">
                             <p>{this.props.data.volumeInfo.authors}</p>
                             <p>Price</p> 
@@ -29,5 +34,3 @@ class Book extends Component {
 }
 
 export default Book;
-
-//e.target.value

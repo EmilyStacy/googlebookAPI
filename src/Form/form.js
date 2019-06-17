@@ -4,50 +4,59 @@ class Form extends Component {
     constructor(props){
         super(props);
         this.state={
-            q: " ",
-            currentPrintFilter:null,
-            currentTypeFilter:null,
+            q: "",
+            currentPrintFilter:"Book",
+            currentTypeFilter:null
             
         }
-        // this.onPrintChangeHandler=this.onPrintChangeHandler.bind(this);
-        // this.onTypeChangeHandler=this.onTypeChangeHandler.bind(this);
-        this.selectFilter=this.selectFilter(this);
+        this.setCurrentPrintFilter=this.setCurrentPrintFilter.bind(this);
+        this.setCurrentTypeFilter=this.setCurrentTypeFilter.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+        this.setSearch=this.setSearch.bind(this);
+    }
+ 
+    handleSubmit(event){
+        event.preventDefault();
+        console.log('query is', this.state.q)
+        this.props.onHandleSearch(this.state.q);
+        this.props.onHandleSearch(this.state.currentPrintFilter);
+        this.props.onHandleSearch(this.state.currentTypeFilter);
     }
 
-    // onPrintChangeHandler(e){
-    //     this.setState({
-    //         currentPrintFilter: e.target.value
-    //     })
-    // }
-
-    // onTypeChangeHandler(e){
-    //     this.setState({
-    //         currentTypeFilter: e.target.value
-    //     })
-        
-    // }
-
-    selectFilter(){
-        this.props.onHandleSearch(this.state.targetvalue)
+    setCurrentPrintFilter(event){
+        event.preventDefault();
+        this.setState({currentPrintFilter:event.target.value})
     }
+
+    setCurrentTypeFilter(event){
+        event.preventDefault();
+        this.setState({currentTypeFilter:event.target.value})
+    }
+
+    setSearch(event){
+        event.preventDefault();
+        this.setState({q:event.target.value})
+    }
+
+
     render() {
-       
+        console.log("state is",this.state);
         return (
-            <form onSubmit={this.props.onHandleSearch}>
+            <form onSubmit={this.handleSubmit}>
                 <div className ="search">
                 <label htmlFor="Search">Search:</label>
-                <input type="text" placeholder="type a word.." name="search" /> 
+                <input type="text" placeholder="type a word.." name="search" onChange={this.setSearch} value={this.state.q} required/> 
                 <button type="submit" value="Submit" className="button">Search</button>
                 </div>
            
                 <div className="filter" >
                     <label htmlFor="type">Print Type:</label>
-                    <select className="printType" onChange={this.props.onHandleSearch}>
-                        <option value="Book">Book </option>
-                        <option value="Megazine">Megazine </option>
+                    <select className="printType" onChange={this.setCurrentPrintFilter} value={this.state.currentPrintFilter}>
+                        <option value="books">Book </option>
+                        <option value="megazines">Megazine </option>
                     </select>
                     <label htmlFor="bookType">Book Type:</label>
-                    <select className="bookType" onChange={this.props.onHandleSearch}>
+                    <select className="bookType" onChange={this.setCurrentTypeFilter} value={this.state.currentTypeFilter}>
                     <option value="">No filter </option>
                     <option value="free-ebooks">free-ebooks </option>
                     <option value="paid-ebooks">paid-ebooks </option>
