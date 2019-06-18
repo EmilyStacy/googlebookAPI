@@ -35,7 +35,7 @@ class App extends Component {
       // .then(console.log(res.json)).=> don't do it
     .then(data => {
       this.setState (
-        {booklist:data.items,
+        {booklist:data.totalItems > 0 ? data.items : [],
          loading:false
          })
         console.log(this.state.booklist);
@@ -54,11 +54,12 @@ class App extends Component {
       if(currentTypeFilter){
         url+=`&filter=${currentTypeFilter}`
       }
+      console.log(url);
    fetch(url)
   //  fetch(`${Config.API_ENDPOINT}q=${query}`)
    .then(res => res.json())
    .then(data => this.setState({
-     booklist:data.items,
+     booklist:data.totalItems > 0 ? data.items : [],
      error:null
     }
      ))
@@ -79,8 +80,11 @@ class App extends Component {
               <div class="bar"></div>
               </div>: ''}
       <Form className="Form" onHandleSearch={this.handleSearch} />
-      <BookList booklist={this.state.booklist} />
-      
+      {this.state.booklist.length > 0
+  ? <BookList booklist={this.state.booklist} />
+  : <div>No results found!</div>}
+      {/* <BookList booklist={this.state.booklist} />
+       */}
     </main>
   );
 }

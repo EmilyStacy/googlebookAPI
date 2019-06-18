@@ -41,6 +41,7 @@ input:focus{
     width:100%;
     height:30px;
     padding:5px;
+    text-align:center;
 }
 
 .printType{

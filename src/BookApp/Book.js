@@ -16,8 +16,31 @@ class Book extends Component {
         }else {
             thumbnail=this.props.data.volumeInfo.imageLinks.thumbnail;
         }
+        console.log("thisis",this.props.data);
+        let narration;
+        if(this.props.data.volumeInfo.description===undefined){
+            narration=null;
+        }else{
+            narration=this.props.data.volumeInfo.description;
+        }
+        let price;
+        if(this.props.data.saleInfo ===undefined) {
+            price = null;
+        }
+        else{
+            if (this.props.data.saleInfo.saleability !== undefined){
+                price=this.props.data.saleInfo.saleability;
+            }
 
-        console.log("this is",this.props.data.categories)
+            if(this.props.data.saleInfo.listPrice !==undefined){
+                price=`$ ${this.props.data.saleInfo.listPrice.amount}`;
+            }
+            
+            // console.log('this is',this.props.data.salesInfo.listPrice.amount);
+            // price = this.props.data.saleInfo.listprice.amount;
+            
+        }
+        
 
         return (<div className="item">
                     <h2 class="header2"> {this.props.data.volumeInfo.title} </h2>
@@ -25,11 +48,10 @@ class Book extends Component {
                         {thumbnail !==null ?<img src={thumbnail}/>:<div className="placeholder">No image</div>}
                         <div className="info">
                             <p>{this.props.data.volumeInfo.authors}</p>
-                            <p>Price</p> 
-                            {/* <p>{this.props.data.categories.description}</p> */}
-                             <p>Description</p>
+                            <p>{price}</p>  
                         </div>
                     </div>
+                    {narration!==null?<div className="text">{narration} </div>:<div className="placeholder"> </div>}
                </div>
             )
     }

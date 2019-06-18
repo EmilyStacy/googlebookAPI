@@ -38,12 +38,11 @@ class Form extends Component {
 
 
     render() {
-        console.log("state is",this.state);
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className ="search">
                 <label htmlFor="Search">Search:</label>
-                <input type="text" placeholder="type a word.." name="search" onChange={this.setSearch} value={this.state.q} required/> 
+                <input type="text" placeholder="type a word.." name="search" onChange={this.setSearch} value={this.state.q}/> 
                 <button type="submit" value="Submit" className="button">Search</button>
                 </div>
            
@@ -51,7 +50,7 @@ class Form extends Component {
                     <label htmlFor="type">Print Type:</label>
                     <select className="printType" onChange={this.setCurrentPrintFilter} value={this.state.currentPrintFilter}>
                         <option value="books">Book </option>
-                        <option value="megazines">Megazine </option>
+                        <option value="magazines">Magazine </option>
                     </select>
                     <label htmlFor="bookType">Book Type:</label>
                     <select className="bookType" onChange={this.setCurrentTypeFilter} value={this.state.currentTypeFilter}>
@@ -69,16 +68,7 @@ class Form extends Component {
    }
    
    export default Form;
-   // setting the state
-   //this.state={
-       //currentFilter:null
-   //}
-
-  // onChangeHandler(){
-//this.setState(
-   // currentFilter= e.target.value
-//)
-   //}
+   
 
 
    

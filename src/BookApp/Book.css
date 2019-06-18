@@ -18,10 +18,19 @@
 img{
     width:45%;
     text-align:center;
+    flex: 0;
 }
 .info{
     width:45%;
     text-align:center;
+}
+
+.text{
+    width:90%;
+    padding:10px;
+    overflow:hidden;
+    height:100px;
+    overflow-y: scroll;
 }
 
 /* @media screen and(min-width:767px) {
