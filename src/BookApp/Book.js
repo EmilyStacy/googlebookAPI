@@ -33,12 +33,8 @@ class Book extends Component {
             }
 
             if(this.props.data.saleInfo.listPrice !==undefined){
-                price=`$ ${this.props.data.saleInfo.listPrice.amount}`;
+                price=`$${this.props.data.saleInfo.listPrice.amount}`;
             }
-            
-            // console.log('this is',this.props.data.salesInfo.listPrice.amount);
-            // price = this.props.data.saleInfo.listprice.amount;
-            
         }
         
 
