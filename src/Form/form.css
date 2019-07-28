@@ -1,0 +1,69 @@
+/*cannot see the arrows in selected*/
+.search{
+    background-color:#ababab;
+    text-align:center;
+    color:black;
+    width:100%;
+    height:10px;
+    padding:20px;
+}
+
+label{
+    margin:2px;
+    height:10px;
+    font-size:0.8em;
+}
+
+input{
+    border: 2px solid #ababab;
+    border-radius: 4px;
+    background-color: white;
+    height:15px;
+}
+
+input:focus{
+    background-color: #faffbd;
+}
+
+.button{
+    border:1px solid #ababab;
+    background-color:#ffffff;
+    border-radius: 4px;
+    height:20px;
+}
+
+.button:hover,.button:focus{
+    border: 1px solid #6ea0e5;
+} 
+
+.filter{
+    background-color:#dedede; 
+    width:100%;
+    height:30px;
+    padding:5px;
+    text-align:center;
+}
+
+.printType{
+    border:1px solid #ababab;
+    background-color:#ffffff;
+}
+
+.bookType{
+    order:1px solid #ababab;
+    background-color:#ffffff;
+}
+
+.printType-items, .bookType:after{
+    background-color:#66a1fa;
+} 
+
+.printType:after, .bookType:after{
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    font-size: 20px;
+    content: "\e842";
+
+}
+
